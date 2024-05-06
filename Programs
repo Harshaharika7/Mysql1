@@ -1,66 +1,67 @@
 '''MYSQL Installation Command:
+    •sudo apt install mysql-server
+    •sudo systemctl start mysql.service
+    •sudo mysql
+    •ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+    •exit
+    •clear
+    •mysql -u root -p'''
 
-	sudo apt install mysql-server
-	sudo systemctl start mysql.service
-	sudo mysql
-	ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
-	exit
-	mysql -u root -p'''
-
-'''Connect DB Using Python
-	sudo pip install mysql-connector-python
-To Check Connection:'''
-
+'''Connect DB Using Python:
+  •sudo pip install mysql-connector-python'''
+#To Check Connection:
 import mysql.connector
-
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   password="root"
 )
-
 print(mydb)
-To Create New Database :
+#To Create New Database :
 import mysql.connector
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   password="root"
 )
-
-
 mycursor = mydb.cursor()
 
+#Creating a new database
 def createDatabase(dbName)
 	sql = "CREATE DATABASE "+dbName;
 	mycursor.execute(sql)
 
+#Creating a studentable
 def createStudentTable():
     sql = “create table student (id int,name varchar(255),age int,primary key(id))”
 
-
-
+#Inserting the values into student table 
 def insertValuesIntoStudentTable():
 	sql = "insert into student (id,name,age) values (%s,%s,%s)"
 	values = (int(1),"VGLUG",int(11))
 	mycursor.execute(sql,values)
 	mydb.commit()
 
-	
+#Inserting  the multiple values into the student table	
 def insertMultipleValuesIntoStudentTable():
 	sql = "insert into student (id,name,age) values (%s,%s,%s)"
 	values = [(int(4),'VGLUG2',int(12)),(int(4),'VGLUG3',int(13))]
 	mycursor.executemany(sql,values)
 	mydb.commit()
 
+#Updating  the values into the student table 
 def updateValuesIntoStudentTable():
 	sql = "update student set age = ‘16’ where name= ‘VGLUG2’"
 	mycursor.execute(sql)
 	mydb.commit()
+
+#deleting values into the student table 
 def deleteValuesIntoStudentTable():
 	sql = "delete from student where name= 'VGLUG2'"
 	mycursor.execute(sql)
 	mydb.commit()
+
+#fetching the values into the student details  
 def fetchAllStudentDetails():
 	sql = "select * from student"
 	mycursor.execute(sql)
