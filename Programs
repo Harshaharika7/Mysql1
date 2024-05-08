@@ -30,6 +30,8 @@ mycursor = mydb.cursor()
 def createDatabase(dbName)
 	sql = "CREATE DATABASE "+dbName;
 	mycursor.execute(sql)
+createDatabase("studentManagement")
+
 
 #Creating a studentable
 def createStudentTable():
